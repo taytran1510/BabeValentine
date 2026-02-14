@@ -3,137 +3,265 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>For You ❤️</title>
+  <title>Will you be my Valentine? 💘</title>
   <style>
     :root{
-      --bg1:#fff0f6; --bg2:#ffe6f0; --card:#ffffff;
-      --text:#222; --muted:#666; --accent:#ff4d6d;
+      --bg:#fff0f5;
+      --card:#ffffff;
+      --accent:#ff4d6d;
+      --text:#222;
+      --muted:#666;
     }
     *{box-sizing:border-box}
     body{
-      margin:0; min-height:100vh; display:grid; place-items:center;
+      margin:0;
+      height:100vh;
+      display:grid;
+      place-items:center;
+      background:var(--bg);
       font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
-      background: radial-gradient(1000px 500px at 20% 10%, var(--bg2), transparent),
-                  radial-gradient(900px 600px at 90% 90%, var(--bg2), transparent),
-                  linear-gradient(135deg, var(--bg1), #fff);
       overflow:hidden;
       color:var(--text);
     }
     .card{
-      width:min(520px, 92vw);
-      background:rgba(255,255,255,.85);
-      backdrop-filter: blur(8px);
-      border:1px solid rgba(0,0,0,.06);
+      width:min(720px, 92vw);
+      background:rgba(255,255,255,.92);
       border-radius:22px;
-      box-shadow:0 16px 40px rgba(0,0,0,.12);
-      padding:26px 22px;
-      position:relative;
+      box-shadow:0 14px 40px rgba(0,0,0,.12);
+      padding:18px 18px 16px;
+      border:1px solid rgba(0,0,0,.06);
     }
-    .pill{
-      display:inline-flex; gap:8px; align-items:center;
-      padding:8px 12px; border-radius:999px;
-      background:rgba(255,77,109,.12);
-      color:var(--accent); font-weight:700;
-      margin-bottom:14px;
+    .top{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:14px;
+      align-items:stretch;
     }
-    h1{margin:0 0 10px; font-size:28px}
-    p{margin:0 0 12px; color:var(--muted); line-height:1.55}
-    .btns{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px}
+    @media (max-width: 780px){
+      .top{grid-template-columns:1fr}
+    }
+    h1{margin:0 0 8px; font-size:28px}
+    p{margin:0 0 12px; color:var(--muted); line-height:1.5}
+    .btns{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px}
     button{
-      border:0; cursor:pointer; font-weight:800;
-      padding:12px 16px; border-radius:999px;
-      transition: transform .06s ease;
+      border:0; border-radius:999px; padding:12px 16px;
+      font-weight:800; cursor:pointer;
+      transition: transform .06s ease, filter .12s ease;
     }
     button:active{transform:scale(.98)}
-    .primary{background:var(--accent); color:white}
-    .ghost{background:#f2f2f2}
+    #yes{background:var(--accent); color:#fff}
+    #no{background:#eee}
     .msg{
-      margin-top:14px; padding:14px; border-radius:16px;
-      background:#fff; border:1px solid rgba(0,0,0,.06);
-      min-height:56px;
+      margin-top:12px;
+      padding:12px 14px;
+      border-radius:16px;
+      background:#fff;
+      border:1px solid rgba(0,0,0,.06);
+      min-height:54px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
       font-size:16px;
     }
-    .footer{margin-top:12px; font-size:12px; color:#888}
-    /* floating hearts */
+
+    /* Gallery */
+    .gallery{
+      border-radius:18px;
+      overflow:hidden;
+      border:1px solid rgba(0,0,0,.06);
+      background:#fff;
+      display:grid;
+      grid-template-rows: auto 1fr;
+      min-height:320px;
+    }
+    .hero{
+      position:relative;
+      aspect-ratio: 4 / 3;
+      background:#f6f6f6;
+    }
+    .hero img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+    .badge{
+      position:absolute;
+      top:10px; left:10px;
+      background:rgba(255,77,109,.9);
+      color:#fff;
+      padding:8px 10px;
+      border-radius:999px;
+      font-weight:800;
+      font-size:12px;
+      letter-spacing:.2px;
+    }
+    .thumbs{
+      display:flex;
+      gap:8px;
+      padding:10px;
+      overflow:auto;
+      background:rgba(255,255,255,.85);
+    }
+    .thumbs img{
+      width:64px; height:64px;
+      object-fit:cover;
+      border-radius:12px;
+      border:2px solid transparent;
+      cursor:pointer;
+      flex:0 0 auto;
+      opacity:.9;
+      transition: .12s ease;
+    }
+    .thumbs img:hover{opacity:1; transform:translateY(-1px)}
+    .thumbs img.active{border-color: var(--accent); opacity:1}
+
+    /* Floating hearts */
     .heart{
-      position:absolute; font-size:18px; opacity:.0;
-      animation: floatUp 4.2s ease-in infinite;
-      user-select:none; pointer-events:none;
+      position:fixed;
+      bottom:-20px;
+      font-size:18px;
+      opacity:0;
+      animation: floatUp 4.2s ease-in forwards;
+      pointer-events:none;
+      user-select:none;
+      filter: drop-shadow(0 6px 12px rgba(0,0,0,.15));
     }
     @keyframes floatUp{
-      0%{transform:translateY(20px) scale(.9); opacity:0}
-      10%{opacity:.9}
-      100%{transform:translateY(-520px) scale(1.25); opacity:0}
+      0%{transform:translateY(0) scale(.9); opacity:0}
+      10%{opacity:1}
+      100%{transform:translateY(-110vh) scale(1.25); opacity:0}
+    }
+
+    .footer{
+      margin-top:10px;
+      font-size:12px;
+      color:#888;
+      text-align:center;
     }
   </style>
 </head>
+
 <body>
-  <div class="card" id="card">
-    <div class="pill">💌 Valentine Surprise</div>
+  <div class="card">
+    <div class="top">
+      <div>
+        <h1>Em có đồng ý làm Valentine của anh không? 💘</h1>
+        <p>
+          Anh làm cái web nhỏ này để lưu mấy khoảnh khắc của tụi mình.
+          Nếu em bấm <b>Yes</b>… anh có quà thật đó 😆🌹
+        </p>
 
-    <!-- ===================== CUSTOMIZE ===================== -->
-    <h1>Gửi <span id="name">em yêu</span> của anh ❤️</h1>
-    <p id="intro">
-      Anh không biết làm gì cho “đúng chuẩn lãng mạn”, nên anh làm theo kiểu anh giỏi nhất: viết một trang web nhỏ cho em.
-    </p>
-    <!-- ===================================================== -->
+        <div class="btns">
+          <button id="yes">Yes 💖</button>
+          <button id="no">No 🙃</button>
+        </div>
 
-    <div class="btns">
-      <button class="primary" id="open">Mở món quà 🎁</button>
-      <button class="ghost" id="more">Thêm 1 điều anh muốn nói 💖</button>
+        <div class="msg" id="msg">Bấm thử đi nè 😄</div>
+        <div class="footer">— Ben</div>
+      </div>
+
+      <div class="gallery">
+        <div class="hero">
+          <div class="badge">Our moments ✨</div>
+          <img id="heroImg" src="images/1.jpg" alt="memory" />
+        </div>
+        <div class="thumbs" id="thumbs">
+          <!-- Thumbnails sẽ được JS tạo -->
+        </div>
+      </div>
     </div>
-
-    <div class="msg" id="msg">Bấm “Mở món quà” đi nè 😄</div>
-    <div class="footer">— Ben</div>
   </div>
 
   <script>
-    // ===================== CUSTOMIZE =====================
-    const LINES = [
-      "Cảm ơn em vì đã đến và ở lại.",
-      "Ở cạnh em, anh thấy mọi thứ nhẹ hơn.",
-      "Nếu hôm nay có một điều chắc chắn: anh thương em nhiều lắm.",
-      "Valentine này, mình cùng tạo thêm kỷ niệm nha 🌹",
-      "P/s: Em là ‘bug’ dễ thương nhất đời anh 😆❤️"
+    // =================== CHỈNH Ở ĐÂY ===================
+    // Đổi số lượng ảnh + đúng tên file trong thư mục /images
+    const IMAGES = [
+      "images/1.jpg",
+      "images/2.jpg",
+      "images/3.jpg",
+      "images/4.jpg",
     ];
-    // =====================================================
 
+    const YES_LINES = [
+      "Anh biết mà 😎💖",
+      "Tối nay mình đi hẹn hò nha 🌹",
+      "Cảm ơn em vì đã chọn anh 🥺",
+      "Happy Valentine’s Day ❤️",
+      "Anh thương em nhiều lắm, thiệt luôn 💘"
+    ];
+    // ====================================================
+
+    const noBtn = document.getElementById("no");
+    const yesBtn = document.getElementById("yes");
     const msg = document.getElementById("msg");
-    const openBtn = document.getElementById("open");
-    const moreBtn = document.getElementById("more");
-    const card = document.getElementById("card");
+    const heroImg = document.getElementById("heroImg");
+    const thumbs = document.getElementById("thumbs");
 
-    function setMsg(text){
-      msg.textContent = text;
-      burstHearts();
+    // Build thumbnails
+    IMAGES.forEach((src, i) => {
+      const img = document.createElement("img");
+      img.src = src;
+      img.alt = "thumb " + (i+1);
+      if(i === 0) img.classList.add("active");
+      img.addEventListener("click", () => setHero(i));
+      thumbs.appendChild(img);
+    });
+
+    function setHero(index){
+      heroImg.src = IMAGES[index];
+      [...thumbs.querySelectorAll("img")].forEach((t, idx) => {
+        t.classList.toggle("active", idx === index);
+      });
+      burstHearts(8);
     }
 
-    let idx = 0;
-    openBtn.addEventListener("click", () => {
-      setMsg(LINES[0]);
-      idx = 1;
+    // Auto slideshow (optional)
+    let slide = 0;
+    setInterval(() => {
+      slide = (slide + 1) % IMAGES.length;
+      setHero(slide);
+    }, 4500);
+
+    // No button runs away
+    let noCount = 0;
+    noBtn.addEventListener("mouseenter", () => {
+      const padding = 20;
+      const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - padding);
+      const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - padding);
+
+      noBtn.style.position = "fixed";
+      noBtn.style.left = Math.max(padding, x) + "px";
+      noBtn.style.top  = Math.max(padding, y) + "px";
+
+      noCount++;
+      if(noCount >= 3) noBtn.textContent = "Không thoát đâu 😆";
     });
 
-    moreBtn.addEventListener("click", () => {
-      if (idx >= LINES.length) idx = 0;
-      setMsg(LINES[idx]);
-      idx++;
+    // Yes click
+    yesBtn.addEventListener("click", () => {
+      msg.textContent = YES_LINES[Math.floor(Math.random()*YES_LINES.length)];
+      burstHearts(18);
+      document.body.style.background = "#ffe5ec";
+      // Nếu muốn: redirect sang trang quà thật
+      // window.location.href = "gift.html";
     });
 
-    // floating hearts effect
-    function burstHearts(){
-      for(let i=0;i<10;i++){
-        const s = document.createElement("div");
-        s.className = "heart";
-        s.textContent = ["💖","💕","💘","❤️","🌹"][Math.floor(Math.random()*5)];
-        s.style.left = (10 + Math.random()*80) + "%";
-        s.style.bottom = "10px";
-        s.style.animationDelay = (Math.random()*0.6) + "s";
-        s.style.fontSize = (14 + Math.random()*16) + "px";
-        card.appendChild(s);
-        setTimeout(()=>s.remove(), 5200);
+    function burstHearts(n=10){
+      const icons = ["💖","💕","💘","❤️","🌹"];
+      for(let i=0;i<n;i++){
+        const h = document.createElement("div");
+        h.className = "heart";
+        h.textContent = icons[Math.floor(Math.random()*icons.length)];
+        h.style.left = (Math.random()*100) + "vw";
+        h.style.animationDelay = (Math.random()*0.25) + "s";
+        h.style.fontSize = (14 + Math.random()*22) + "px";
+        document.body.appendChild(h);
+        setTimeout(()=>h.remove(), 5000);
       }
     }
   </script>
 </body>
 </html>
+
