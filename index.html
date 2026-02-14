@@ -213,29 +213,29 @@
     .right p{margin:0 0 10px}
     .miniBtns{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px}
     .miniBtns button{padding:11px 14px}
+
     .letterBox{
-                margin-top:12px;
-                border-radius:18px;
-                background:#fff;
-                border:1px solid rgba(0,0,0,.06);
-                padding:12px 12px;
-                line-height:1.55;
-                color:#333;
-                white-space:pre-wrap;
+      margin-top:12px;
+      border-radius:18px;
+      background:#fff;
+      border:1px solid rgba(0,0,0,.06);
+      padding:12px 12px;
+      line-height:1.55;
+      color:#333;
+      white-space:pre-wrap;
 
-                max-height: 240px;          /* chỉnh tuỳ ý */
-                overflow-y: auto;
-                -webkit-overflow-scrolling: touch;
-                }
-
-                /* scrollbar (Chrome/Edge) */
-                .letterBox::-webkit-scrollbar{ width:10px; }
-                .letterBox::-webkit-scrollbar-thumb{
-                background: rgba(255,77,109,.35);
-                border-radius: 999px;
-                border: 3px solid #fff;
-                }
-.letterBox::-webkit-scrollbar-track{ background: transparent; }
+      max-height: 240px;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    /* scrollbar (Chrome/Edge) */
+    .letterBox::-webkit-scrollbar{ width:10px; }
+    .letterBox::-webkit-scrollbar-thumb{
+      background: rgba(255,77,109,.35);
+      border-radius: 999px;
+      border: 3px solid #fff;
+    }
+    .letterBox::-webkit-scrollbar-track{ background: transparent; }
 
     .hint{font-size:12px; color:#888; margin-top:8px}
 
@@ -344,40 +344,40 @@
     ];
 
     const LETTER = [
-  "Cục vàng của anh Ben à…",
-  "",
-  "Anh đã nghĩ khá lâu trước khi viết những dòng này.",
-  "Không phải vì anh không biết mình cảm thấy gì,",
-  "mà vì anh muốn nói ra một cách nghiêm túc nhất.",
-  "",
-  "Anh không tin vào những lời hứa quá hoàn hảo.",
-  "Anh tin vào việc chọn nhau ở lại, ngay cả khi mọi thứ không dễ dàng.",
-  "",
-  "Anh biết anh không phải phiên bản tốt nhất của một người đàn ông.",
-  "Nhưng từ ngày có em, anh bắt đầu muốn trở thành phiên bản tốt hơn.",
-  "Không phải vì áp lực.",
-  "Mà vì anh thấy tương lai của mình có em trong đó.",
-  "",
-  "Cảm ơn em đã đến khi anh còn nhiều thiếu sót.",
-  "Cảm ơn em đã kiên nhẫn với những lần anh im lặng thay vì giải thích.",
-  "Và cảm ơn em vì đã không rời đi.",
-  "",
-  "Tình yêu với anh không phải là điều ồn ào.",
-  "Nó là cảm giác bình yên khi nghĩ về em.",
-  "Là việc dù có chuyện gì xảy ra,",
-  "anh vẫn muốn quay về phía em.",
-  "",
-  "Anh không hứa mọi ngày đều rực rỡ.",
-  "Nhưng anh hứa sẽ không để em một mình trong những ngày tối.",
-  "",
-  "Và nếu có ai hỏi anh điều chắc chắn nhất hôm nay là gì,",
-  "thì đó là: anh Ben thương cục vàng rất nhiều.",
-  "",
-  "Valentine này không chỉ là một ngày.",
-  "Anh mong nó là một cột mốc nhỏ trong một hành trình rất dài của hai mình.",
-  "",
-  "— Anh Ben 💖"
-].join("\n");
+      "Cục vàng của anh Ben à…",
+      "",
+      "Anh đã nghĩ khá lâu trước khi viết những dòng này.",
+      "Không phải vì anh không biết mình cảm thấy gì,",
+      "mà vì anh muốn nói ra một cách nghiêm túc nhất.",
+      "",
+      "Anh không tin vào những lời hứa quá hoàn hảo.",
+      "Anh tin vào việc chọn nhau ở lại, ngay cả khi mọi thứ không dễ dàng.",
+      "",
+      "Anh biết anh không phải phiên bản tốt nhất của một người đàn ông.",
+      "Nhưng từ ngày có em, anh bắt đầu muốn trở thành phiên bản tốt hơn.",
+      "Không phải vì áp lực.",
+      "Mà vì anh thấy tương lai của mình có em trong đó.",
+      "",
+      "Cảm ơn em đã đến khi anh còn nhiều thiếu sót.",
+      "Cảm ơn em đã kiên nhẫn với những lần anh im lặng thay vì giải thích.",
+      "Và cảm ơn em vì đã không rời đi.",
+      "",
+      "Tình yêu với anh không phải là điều ồn ào.",
+      "Nó là cảm giác bình yên khi nghĩ về em.",
+      "Là việc dù có chuyện gì xảy ra,",
+      "anh vẫn muốn quay về phía em.",
+      "",
+      "Anh không hứa mọi ngày đều rực rỡ.",
+      "Nhưng anh hứa sẽ không để em một mình trong những ngày tối.",
+      "",
+      "Và nếu có ai hỏi anh điều chắc chắn nhất hôm nay là gì,",
+      "thì đó là: anh Ben thương cục vàng rất nhiều.",
+      "",
+      "Valentine này không chỉ là một ngày.",
+      "Anh mong nó là một cột mốc nhỏ trong một hành trình rất dài của hai mình.",
+      "",
+      "— Anh Ben 💖"
+    ].join("\n");
 
     // ====================================================
 
@@ -394,6 +394,40 @@
     const nextPhoto = document.getElementById("nextPhoto");
     const openLetter = document.getElementById("openLetter");
     const letterBox = document.getElementById("letterBox");
+
+    // ===== FIX TYPEWRITER (chống bấm nhiều lần bị loạn chữ) =====
+    let typingTimer = null;
+    let isTyping = false;
+
+    function stopTypingIfAny(){
+      if (typingTimer) clearInterval(typingTimer);
+      typingTimer = null;
+      isTyping = false;
+      openLetter.disabled = false;
+      openLetter.textContent = "Mở thư 💌";
+    }
+
+    function typewriter(el, text, speedMs){
+      // dừng timer cũ trước khi chạy mới
+      if (typingTimer) clearInterval(typingTimer);
+
+      isTyping = true;
+      openLetter.disabled = true;
+      openLetter.textContent = "Đang mở thư… 💭";
+
+      el.textContent = "";
+      let i = 0;
+
+      typingTimer = setInterval(() => {
+        el.textContent += text[i] ?? "";
+        i++;
+
+        if (i >= text.length) {
+          stopTypingIfAny();
+        }
+      }, speedMs);
+    }
+    // ===========================================================
 
     // Build thumbnails
     IMAGES.forEach((src, i) => {
@@ -448,12 +482,19 @@
       document.body.style.background = "#ffe5ec";
       overlayLine.textContent = line;
       overlayImg.src = heroImg.src || IMAGES[0];
+
+      // reset thư mỗi lần mở overlay
+      stopTypingIfAny();
       letterBox.textContent = "Bấm “Mở thư” để anh Ben nói một chút nha…";
+
       burstHearts(24);
       popDots(28);
     }
 
     function closeIt(){
+      // dừng typewriter khi đóng overlay
+      stopTypingIfAny();
+
       overlay.classList.remove("show");
       overlay.setAttribute("aria-hidden","true");
       burstHearts(8);
@@ -476,22 +517,21 @@
       popDots(16);
     });
 
-    // Typewriter letter
+    // Typewriter letter (FIX)
     openLetter.addEventListener("click", () => {
+      // nếu đang gõ mà bấm lại -> hiện full ngay (skip)
+      if (isTyping) {
+        stopTypingIfAny();
+        letterBox.textContent = LETTER;
+        burstHearts(12);
+        popDots(12);
+        return;
+      }
+
       typewriter(letterBox, LETTER, 18);
       burstHearts(18);
       popDots(20);
     });
-
-    function typewriter(el, text, speedMs){
-      el.textContent = "";
-      let i = 0;
-      const timer = setInterval(() => {
-        el.textContent += text[i] ?? "";
-        i++;
-        if(i >= text.length) clearInterval(timer);
-      }, speedMs);
-    }
 
     function burstHearts(n=10){
       const icons = ["💖","💕","💘","❤️","🌹"];
